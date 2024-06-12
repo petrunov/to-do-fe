@@ -1,0 +1,39 @@
+{
+  "name": "simple-todo",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "yarn prettier --write && yarn lint:fix && next build",
+    "start": "next start",
+    "lint:styles": "npx stylelint '**/*.scss'",
+    "lint": "next lint && yarn lint:styles",
+    "lint:fix": "next lint --fix && yarn lint:styles --fix",
+    "prettier": "prettier --write */**/*.{js,jsx,json,ts,tsx,scss,css,md}",
+    "prepare": "husky"
+  },
+  "dependencies": {
+    "@nestjs/swagger": "^7.3.1",
+    "axios": "^1.7.2",
+    "next": "14.2.3",
+    "react": "^18",
+    "react-dom": "^18",
+    "swagger-ui-express": "^5.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.3",
+    "eslint-config-prettier": "^9.1.0",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
+    "prettier": "3.2.5",
+    "sass": "^1.77.1",
+    "stylelint": "^16.5.0",
+    "stylelint-config-prettier-scss": "^1.0.0",
+    "stylelint-config-standard-scss": "^13.1.0",
+    "typescript": "^5"
+  }
+}
