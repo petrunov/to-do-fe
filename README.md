@@ -2,6 +2,13 @@
 
 This is a simple ToDo app based on NEXbase Core (made by Vesselin Petrunov out of the scope of Simple ToDo).
 
+# Installation
+
+```bash
+$ docker build -t simple-todo .
+$ docker run -p 80:3000 -d --name simple-todo simple-todo
+```
+
 ## What does it give you?
 
 Always up to date NextJS application with configured:
