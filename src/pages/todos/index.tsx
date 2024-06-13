@@ -7,7 +7,7 @@ import {
 import { Todo } from 'interfaces/ITodo';
 import TodoList from 'components/Todo/TodoList/TodoList';
 import TodoForm from 'components/Todo/TodoForm/TodoForm';
-import ConfirmDeleteModal from 'components/ConfirmDeleteModal/ConfirmDeleteModal'; // Import ConfirmDeleteModal
+import ConfirmDeleteModal from 'components/ConfirmDeleteModal/ConfirmDeleteModal';
 
 const TodosPage: React.FC = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
@@ -76,11 +76,10 @@ const TodosPage: React.FC = () => {
           <TodoList
             todos={todos}
             onUpdateTodo={handleUpdateTodo}
-            onDeleteTodo={handleConfirmDelete} // Pass handleConfirmDelete to TodoList
+            onDeleteTodo={handleConfirmDelete}
           />
         </tbody>
       </table>
-      {/* Render ConfirmDeleteModal outside the table */}
       <ConfirmDeleteModal
         isOpen={showModal}
         message={

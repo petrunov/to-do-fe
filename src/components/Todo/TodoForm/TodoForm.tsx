@@ -15,15 +15,11 @@ const TodoForm: React.FC<{ onTodoCreated: (newTodo: Todo) => void }> = ({
         order: 1,
       };
 
-      // Call the onTodoCreated function passed as prop to notify TodosPage
       onTodoCreated(newTodoData);
-
-      // Clear input fields
       setNewTodoTitle('');
       setNewTodoDescription('');
     } catch (error) {
       console.error('Error creating todo:', error);
-      // Handle error here, such as showing an error message to the user
     }
   };
 
