@@ -1,15 +1,19 @@
 // src/components/Todo/TodoForm/TodoForm.tsx
 import React, { useState, useEffect } from 'react';
 import { createTodo } from 'services/todoService';
+import { Todo } from 'interfaces/ITodo';
 
-const TodoForm: React.FC = () => {
+interface TodoFormProps {
+  onAddTodo: (todo: Todo) => void;
+}
+
+const TodoForm: React.FC<TodoFormProps> = ({ onAddTodo }) => {
   const [newTodoTitle, setNewTodoTitle] = useState<string>('');
   const [newTodoDescription, setNewTodoDescription] = useState<string>('');
   const [error, setError] = useState<string | null>(null);
   const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(true);
 
   useEffect(() => {
-    // Enable the button if both fields are filled
     if (newTodoTitle && newTodoDescription) {
       setIsButtonDisabled(false);
     } else {
@@ -18,9 +22,8 @@ const TodoForm: React.FC = () => {
   }, [newTodoTitle, newTodoDescription]);
 
   const handleCreateTodo = async () => {
-    setError(null); // Clear previous errors
+    setError(null);
 
-    // Front-end validation
     if (!newTodoTitle || !newTodoDescription) {
       setError('Title and Description cannot be empty.');
       return;
@@ -35,7 +38,7 @@ const TodoForm: React.FC = () => {
       };
 
       const createdTodo = await createTodo(newTodoData);
-      console.log('Created Todo:', createdTodo);
+      onAddTodo(createdTodo);
       setNewTodoTitle('');
       setNewTodoDescription('');
     } catch (error: any) {

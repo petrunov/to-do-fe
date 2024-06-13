@@ -20,10 +20,14 @@ const TodosPage: React.FC = () => {
     getTodos();
   }, []);
 
+  const handleAddTodo = (newTodo: Todo) => {
+    setTodos((prevTodos) => [...prevTodos, newTodo]);
+  };
+
   return (
     <div>
       <h1>Todos</h1>
-      <TodoForm />
+      <TodoForm onAddTodo={handleAddTodo} />
       <TodoList todos={todos} />
     </div>
   );
