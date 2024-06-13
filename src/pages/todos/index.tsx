@@ -34,15 +34,6 @@ const TodosPage: React.FC = () => {
     setTodos(updatedTodos);
   };
 
-  const handleTodoCreated = async (newTodo: Todo) => {
-    try {
-      const createdTodo = await createTodoService(newTodo);
-      setTodos([...todos, createdTodo]);
-    } catch (error) {
-      console.error('Error creating todo:', error);
-    }
-  };
-
   const handleDeleteTodo = async () => {
     if (!selectedTodo) return;
 
@@ -65,6 +56,14 @@ const TodosPage: React.FC = () => {
   const handleConfirmDelete = (todo: Todo) => {
     setSelectedTodo(todo);
     setShowModal(true);
+  };
+
+  const handleTodoCreated = async (newTodo: Todo) => {
+    try {
+      setTodos([...todos, newTodo]);
+    } catch (error) {
+      console.error('Error creating todo:', error);
+    }
   };
 
   return (
