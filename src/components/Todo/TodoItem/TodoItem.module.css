@@ -1,3 +1,33 @@
-.foo {
-  background: red;
+/* src/components/Todo/TodoItem/TodoItem.module.css */
+.todo-item {
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Smooth transition for background color */
+}
+
+.todo-item:hover {
+  background-color: #f0f0f0; /* Light background color on hover */
+}
+
+.todo-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.todo-table th,
+.todo-table td {
+  padding: 8px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.todo-table th {
+  background-color: #f2f2f2;
+}
+
+.completed {
+  text-decoration: line-through;
+}
+
+.incomplete {
+  text-decoration: none;
 }

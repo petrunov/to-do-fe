@@ -1,4 +1,3 @@
-// src/components/Todo/TodoList/TodoList.tsx
 import React from 'react';
 import styles from './TodoList.module.css';
 import { Todo } from 'interfaces/ITodo';
@@ -11,11 +10,20 @@ interface TodoListProps {
 
 const TodoList: React.FC<TodoListProps> = ({ todos, onUpdateTodo }) => {
   return (
-    <div className={styles.todoList}>
-      {todos.map((todo) => (
-        <TodoItem key={todo.id} todo={todo} onUpdateTodo={onUpdateTodo} />
-      ))}
-    </div>
+    <table className={styles.todoTable}>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {todos.map((todo) => (
+          <TodoItem key={todo.id} todo={todo} onUpdateTodo={onUpdateTodo} />
+        ))}
+      </tbody>
+    </table>
   );
 };
 

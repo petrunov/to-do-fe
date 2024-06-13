@@ -21,21 +21,17 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo, onUpdateTodo }) => {
     }
   };
 
-  const todoStyle = {
-    textDecoration: todo.isCompleted ? 'line-through' : 'none',
-    cursor: 'pointer',
-  };
+  const todoClassNames = [
+    styles['todo-item'], // Accessing kebab-case class name correctly
+    todo.isCompleted ? styles.completed : styles.incomplete,
+  ].join(' ');
 
   return (
-    <div
-      className={styles.todoItem}
-      onClick={handleToggleComplete}
-      style={todoStyle}
-    >
-      <h3>{todo.title}</h3>
-      <p>{todo.description}</p>
-      <p>Status: {todo.isCompleted ? 'Completed' : 'Incomplete'}</p>
-    </div>
+    <tr className={todoClassNames} onClick={handleToggleComplete}>
+      <td>{todo.title}</td>
+      <td>{todo.description}</td>
+      <td>{todo.isCompleted ? 'Completed' : 'Incomplete'}</td>
+    </tr>
   );
 };
 
