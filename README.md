@@ -4,9 +4,18 @@ This is a simple ToDo app based on NEXbase Core (made by Vesselin Petrunov out o
 
 # Installation
 
+Accessible at http://localhost:3002/todos
+
 ```bash
 $ docker build -t simple-todo .
-$ docker run -p 80:3000 -d --name simple-todo simple-todo
+$ docker run -p 3002:3000 -d --name simple-todo simple-todo
+```
+
+OR
+
+```bash
+$ yarn
+$ yarn dev
 ```
 
 ## What does it give you?

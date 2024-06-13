@@ -19,7 +19,7 @@ ENV REACT_APP_API_URL=http://localhost:3001
 RUN npm run build
 
 # Expose port 3000
-EXPOSE 3002
+EXPOSE 3000
 
 # Command to run the application
 CMD ["npm", "start"]
