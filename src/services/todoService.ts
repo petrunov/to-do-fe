@@ -1,16 +1,9 @@
-import axios from 'axios';
+import apiClient from 'utils/api';
+import { Todo } from 'interfaces/ITodo';
 
-const apiClient = axios.create({
-  baseURL: 'http://localhost:3000', // Replace with your API base URL
-  headers: {
-    'Content-Type': 'application/json',
-  },
-});
-
-// Function to fetch all todos
 export const fetchTodos = async () => {
   try {
-    const response = await apiClient.get('http://localhost:3000/todos');
+    const response = await apiClient.get('/todos');
     return response.data;
   } catch (error) {
     console.error('Error fetching todos:', error);
@@ -18,8 +11,7 @@ export const fetchTodos = async () => {
   }
 };
 
-// Function to create a todo
-export const createTodo = async (todoData) => {
+export const createTodo = async (todoData: Omit<Todo, 'id'>) => {
   try {
     const response = await apiClient.post('/todos', todoData);
     return response.data;
@@ -29,8 +21,7 @@ export const createTodo = async (todoData) => {
   }
 };
 
-// Function to fetch a todo by ID
-export const fetchTodoById = async (id) => {
+export const fetchTodoById = async (id: string) => {
   try {
     const response = await apiClient.get(`/todos/${id}`);
     return response.data;
@@ -40,8 +31,7 @@ export const fetchTodoById = async (id) => {
   }
 };
 
-// Function to update a todo by ID
-export const updateTodo = async (id, todoData) => {
+export const updateTodo = async (id: string, todoData: Partial<Todo>) => {
   try {
     const response = await apiClient.patch(`/todos/${id}`, todoData);
     return response.data;
@@ -51,8 +41,7 @@ export const updateTodo = async (id, todoData) => {
   }
 };
 
-// Function to delete a todo by ID
-export const deleteTodo = async (id) => {
+export const deleteTodo = async (id: string) => {
   try {
     const response = await apiClient.delete(`/todos/${id}`);
     return response.data;
