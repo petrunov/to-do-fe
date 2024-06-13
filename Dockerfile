@@ -13,13 +13,13 @@ RUN yarn
 COPY . .
 
 # Environment variables for API URL
-ENV REACT_APP_API_URL=http://localhost:3000
+ENV REACT_APP_API_URL=http://localhost:3001
 
 # Build the application
 RUN npm run build
 
 # Expose port 3000
-EXPOSE 3000
+EXPOSE 3002
 
 # Command to run the application
 CMD ["npm", "start"]
