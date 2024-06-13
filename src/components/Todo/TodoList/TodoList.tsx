@@ -1,11 +1,11 @@
 import React from 'react';
-import { Todo } from 'interfaces/ITodo';
 import TodoItem from 'components/Todo/TodoItem/TodoItem';
+import { Todo } from 'interfaces/ITodo';
 
 interface TodoListProps {
   todos: Todo[];
   onUpdateTodo: (id: string, todoData: Partial<Todo>) => void;
-  onDeleteTodo: (id: string) => void;
+  onDeleteTodo: (todo: Todo) => void;
 }
 
 const TodoList: React.FC<TodoListProps> = ({
@@ -14,26 +14,16 @@ const TodoList: React.FC<TodoListProps> = ({
   onDeleteTodo,
 }) => {
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th>Description</th>
-          <th>Status</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        {todos.map((todo) => (
-          <TodoItem
-            key={todo.id}
-            todo={todo}
-            onUpdateTodo={onUpdateTodo}
-            onDeleteTodo={onDeleteTodo}
-          />
-        ))}
-      </tbody>
-    </table>
+    <>
+      {todos.map((todo) => (
+        <TodoItem
+          key={todo.id}
+          todo={todo}
+          onUpdateTodo={onUpdateTodo}
+          onDeleteTodo={() => onDeleteTodo(todo)}
+        />
+      ))}
+    </>
   );
 };
 
