@@ -1,6 +1,5 @@
-// src/pages/todos.tsx
 import { useEffect, useState } from 'react';
-import { fetchTodos } from 'services/todoService';
+import { fetchTodos, updateTodo } from 'services/todoService';
 import { Todo } from 'interfaces/ITodo';
 import { TodoList, TodoForm } from 'components/Todo';
 
@@ -24,11 +23,22 @@ const TodosPage: React.FC = () => {
     setTodos((prevTodos) => [...prevTodos, newTodo]);
   };
 
+  const handleUpdateTodo = async (id: string, updatedTodo: Partial<Todo>) => {
+    try {
+      const updatedTodos = todos.map((todo) =>
+        todo.id === id ? { ...todo, ...updatedTodo } : todo,
+      );
+      setTodos(updatedTodos);
+    } catch (error) {
+      console.error('Error updating todo:', error);
+    }
+  };
+
   return (
     <div>
       <h1>Todos</h1>
       <TodoForm onAddTodo={handleAddTodo} />
-      <TodoList todos={todos} />
+      <TodoList todos={todos} onUpdateTodo={handleUpdateTodo} />
     </div>
   );
 };
