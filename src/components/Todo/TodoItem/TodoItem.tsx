@@ -27,7 +27,19 @@ const TodoItem: React.FC<TodoItemProps> = ({
     }
   };
 
-  const handleRowClick = () => {
+  const handleRowClick = (
+    e: React.MouseEvent<HTMLTableRowElement, MouseEvent>,
+  ) => {
+    const target = e.target as HTMLButtonElement;
+
+    // Check if the click target is the delete button
+    if (
+      target.tagName.toLowerCase() === 'button' &&
+      target.textContent === 'Delete'
+    ) {
+      return; // Do nothing if the click is on the delete button
+    }
+
     handleToggleComplete(); // Call toggle complete function on row click
   };
 
