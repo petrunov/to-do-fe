@@ -1,33 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { createTodo } from 'services/todoService';
-import { Todo } from 'interfaces/ITodo';
+import React, { useState } from 'react';
 
-interface TodoFormProps {
-  onAddTodo: (todo: Todo) => void;
-}
-
-const TodoForm: React.FC<TodoFormProps> = ({ onAddTodo }) => {
+const TodoForm: React.FC<{ onTodoCreated: (newTodo: Todo) => void }> = ({
+  onTodoCreated,
+}) => {
   const [newTodoTitle, setNewTodoTitle] = useState<string>('');
   const [newTodoDescription, setNewTodoDescription] = useState<string>('');
-  const [error, setError] = useState<string | null>(null);
-  const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(true);
-
-  useEffect(() => {
-    if (newTodoTitle && newTodoDescription) {
-      setIsButtonDisabled(false);
-    } else {
-      setIsButtonDisabled(true);
-    }
-  }, [newTodoTitle, newTodoDescription]);
 
   const handleCreateTodo = async () => {
-    setError(null);
-
-    if (!newTodoTitle || !newTodoDescription) {
-      setError('Title and Description cannot be empty.');
-      return;
-    }
-
     try {
       const newTodoData = {
         title: newTodoTitle,
@@ -36,17 +15,15 @@ const TodoForm: React.FC<TodoFormProps> = ({ onAddTodo }) => {
         order: 1,
       };
 
-      const createdTodo = await createTodo(newTodoData);
-      onAddTodo(createdTodo);
+      // Call the onTodoCreated function passed as prop to notify TodosPage
+      onTodoCreated(newTodoData);
+
+      // Clear input fields
       setNewTodoTitle('');
       setNewTodoDescription('');
-    } catch (error: any) {
-      if (error.response && error.response.data) {
-        const { message } = error.response.data;
-        setError(Array.isArray(message) ? message.join(', ') : message);
-      } else {
-        setError('An unexpected error occurred.');
-      }
+    } catch (error) {
+      console.error('Error creating todo:', error);
+      // Handle error here, such as showing an error message to the user
     }
   };
 
@@ -57,23 +34,14 @@ const TodoForm: React.FC<TodoFormProps> = ({ onAddTodo }) => {
         value={newTodoTitle}
         onChange={(e) => setNewTodoTitle(e.target.value)}
         placeholder='Title'
-        style={{ borderColor: !newTodoTitle ? 'red' : '' }}
       />
-      {!newTodoTitle && <div style={{ color: 'red' }}>Title is required</div>}
       <input
         type='text'
         value={newTodoDescription}
         onChange={(e) => setNewTodoDescription(e.target.value)}
         placeholder='Description'
-        style={{ borderColor: !newTodoDescription ? 'red' : '' }}
       />
-      {!newTodoDescription && (
-        <div style={{ color: 'red' }}>Description is required</div>
-      )}
-      {error && <div style={{ color: 'red' }}>{error}</div>}
-      <button onClick={handleCreateTodo} disabled={isButtonDisabled}>
-        Create Todo
-      </button>
+      <button onClick={handleCreateTodo}>Create Todo</button>
     </div>
   );
 };

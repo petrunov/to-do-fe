@@ -1,7 +1,11 @@
-import { useEffect, useState } from 'react';
-import { fetchTodos, updateTodo } from 'services/todoService';
+import React, { useEffect, useState } from 'react';
+import {
+  fetchTodos,
+  createTodo as createTodoService,
+} from 'services/todoService'; // Assuming createTodo is imported correctly
 import { Todo } from 'interfaces/ITodo';
-import { TodoList, TodoForm } from 'components/Todo';
+import TodoList from 'components/Todo/TodoList/TodoList';
+import TodoForm from 'components/Todo/TodoForm/TodoForm';
 
 const TodosPage: React.FC = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
@@ -19,26 +23,44 @@ const TodosPage: React.FC = () => {
     getTodos();
   }, []);
 
-  const handleAddTodo = (newTodo: Todo) => {
-    setTodos((prevTodos) => [...prevTodos, newTodo]);
+  const handleUpdateTodo = (id: string, updatedTodo: Partial<Todo>) => {
+    const updatedTodos = todos.map((todo) =>
+      todo.id === id ? { ...todo, ...updatedTodo } : todo,
+    );
+    setTodos(updatedTodos);
   };
 
-  const handleUpdateTodo = async (id: string, updatedTodo: Partial<Todo>) => {
+  const handleTodoCreated = async (newTodo: Todo) => {
     try {
-      const updatedTodos = todos.map((todo) =>
-        todo.id === id ? { ...todo, ...updatedTodo } : todo,
-      );
-      setTodos(updatedTodos);
+      // Create the new todo via API call
+      const createdTodo = await createTodoService(newTodo);
+
+      // Update the todos state with the new todo
+      setTodos([...todos, createdTodo]);
     } catch (error) {
-      console.error('Error updating todo:', error);
+      console.error('Error creating todo:', error);
+      // Handle error here, such as showing an error message to the user
+    }
+  };
+
+  const handleDeleteTodo = async (id: string) => {
+    try {
+      // Implement delete functionality here
+    } catch (error) {
+      console.error('Error deleting todo:', error);
+      // Handle error here, such as showing an error message to the user
     }
   };
 
   return (
     <div>
       <h1>Todos</h1>
-      <TodoForm onAddTodo={handleAddTodo} />
-      <TodoList todos={todos} onUpdateTodo={handleUpdateTodo} />
+      <TodoForm onTodoCreated={handleTodoCreated} />
+      <TodoList
+        todos={todos}
+        onUpdateTodo={handleUpdateTodo}
+        onDeleteTodo={handleDeleteTodo}
+      />
     </div>
   );
 };
