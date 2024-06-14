@@ -9,7 +9,7 @@
     "test": "jest",
     "lint:styles": "npx stylelint '**/*.scss'",
     "lint": "next lint && yarn lint:styles",
-    "lint:fix": "next lint --fix && yarn lint:styles --fix",
+    "lint:fix": "next lint --fix",
     "prettier": "prettier --write */**/*.{js,jsx,json,ts,tsx,scss,css,md}",
     "prepare": "husky"
   },
