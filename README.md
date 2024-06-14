@@ -1,6 +1,6 @@
-# NEXbase Core
+# Simplet ToDo
 
-This is a simple ToDo app based on NEXbase Core (made by Vesselin Petrunov out of the scope of Simple ToDo).
+This is a Simple ToDo app based on NEXbase Core (NEXbase is made by Vesselin Petrunov out of the scope of Simple ToDo).
 
 # Installation
 
@@ -11,7 +11,7 @@ $ docker build -t simple-todo .
 $ docker run -p 3002:3000 -d --name simple-todo simple-todo
 ```
 
-OR
+OR Accessible (normally) at http://localhost:3000/todos
 
 ```bash
 $ yarn

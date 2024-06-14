@@ -60,25 +60,27 @@ const TodoForm: React.FC<{ onTodoCreated: (newTodo: Todo) => void }> = ({
           value={newTodoTitle}
           onChange={(e) => setNewTodoTitle(e.target.value)}
           placeholder='Title'
-          style={{ borderColor: !newTodoTitle ? 'red' : '' }}
+          className={`w-full mb-2 p-2 border ${!newTodoTitle ? 'border-red-500' : 'border-gray-300'} rounded`}
         />
-        {!newTodoTitle && <div style={{ color: 'red' }}>Title is required</div>}
+        {!newTodoTitle && (
+          <div className='text-red-500 mb-2'>Title is required</div>
+        )}
         <input
           type='text'
           value={newTodoDescription}
           onChange={(e) => setNewTodoDescription(e.target.value)}
           placeholder='Description'
-          style={{ borderColor: !newTodoDescription ? 'red' : '' }}
+          className={`w-full mb-2 p-2 border ${!newTodoDescription ? 'border-red-500' : 'border-gray-300'} rounded`}
         />
         {!newTodoDescription && (
-          <div style={{ color: 'red' }}>Description is required</div>
+          <div className='text-red-500 mb-2'>Description is required</div>
         )}
-        {error && <div style={{ color: 'red' }}>{error}</div>}
+        {error && <div className='text-red-500 mb-2'>{error}</div>}
         <div className='flex justify-end'>
           <button
             onClick={handleCreateTodo}
-            disabled={isButtonDisabled}
-            className='bg-green-500 text-white rounded p-2 hover:bg-green-600'
+            disabled={isButtonDisabled || !!error}
+            className={`bg-green-500 text-white rounded p-2 transition-colors duration-300 ease-in-out hover:bg-green-600 ${isButtonDisabled || !!error ? 'bg-gray-300 hover:bg-gray-300 cursor-not-allowed' : ''}`}
           >
             Create Todo
           </button>
