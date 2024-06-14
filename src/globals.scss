@@ -2,25 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Additional global styles */
 button {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  background-color: #4caf50; /* Green background */
-  color: white;
-  transition: background-color 0.3s ease;
+  @apply px-4 py-2 bg-green-500 text-white rounded-md transition duration-300 ease-in-out;
 }
 
 button:hover {
+  @apply bg-green-600;
   cursor: pointer;
-  background-color: #45a049; /* Darker green on hover */
 }
 
 input[type='text'],
 input[type='number'],
 textarea {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 15px;
-  box-sizing: border-box; /* Ensure padding and border are included in width */
+  @apply px-4 py-2 border border-gray-300 rounded-lg; /* Using rounded-lg for consistency with Tailwind's borderRadius */
+  width: 100%;
+  box-sizing: border-box; /* Tailwind CSS automatically includes this */
 }

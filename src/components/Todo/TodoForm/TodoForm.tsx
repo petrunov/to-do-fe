@@ -53,29 +53,37 @@ const TodoForm: React.FC<{ onTodoCreated: (newTodo: Todo) => void }> = ({
   };
 
   return (
-    <div>
-      <input
-        type='text'
-        value={newTodoTitle}
-        onChange={(e) => setNewTodoTitle(e.target.value)}
-        placeholder='Title'
-        style={{ borderColor: !newTodoTitle ? 'red' : '' }}
-      />
-      {!newTodoTitle && <div style={{ color: 'red' }}>Title is required</div>}
-      <input
-        type='text'
-        value={newTodoDescription}
-        onChange={(e) => setNewTodoDescription(e.target.value)}
-        placeholder='Description'
-        style={{ borderColor: !newTodoDescription ? 'red' : '' }}
-      />
-      {!newTodoDescription && (
-        <div style={{ color: 'red' }}>Description is required</div>
-      )}
-      {error && <div style={{ color: 'red' }}>{error}</div>}
-      <button onClick={handleCreateTodo} disabled={isButtonDisabled}>
-        Create Todo
-      </button>
+    <div className='flex items-center justify-center py-10'>
+      <div className='align-center w-1/4'>
+        <input
+          type='text'
+          value={newTodoTitle}
+          onChange={(e) => setNewTodoTitle(e.target.value)}
+          placeholder='Title'
+          style={{ borderColor: !newTodoTitle ? 'red' : '' }}
+        />
+        {!newTodoTitle && <div style={{ color: 'red' }}>Title is required</div>}
+        <input
+          type='text'
+          value={newTodoDescription}
+          onChange={(e) => setNewTodoDescription(e.target.value)}
+          placeholder='Description'
+          style={{ borderColor: !newTodoDescription ? 'red' : '' }}
+        />
+        {!newTodoDescription && (
+          <div style={{ color: 'red' }}>Description is required</div>
+        )}
+        {error && <div style={{ color: 'red' }}>{error}</div>}
+        <div className='flex justify-end'>
+          <button
+            onClick={handleCreateTodo}
+            disabled={isButtonDisabled}
+            className='bg-green-500 text-white rounded p-2 hover:bg-green-600'
+          >
+            Create Todo
+          </button>
+        </div>
+      </div>
     </div>
   );
 };

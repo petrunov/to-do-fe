@@ -1,7 +1,6 @@
 import React from 'react';
 import TodoItem from 'components/Todo/TodoItem/TodoItem';
 import { Todo } from 'interfaces/ITodo';
-import styles from './TodoList.module.css';
 
 interface TodoListProps {
   todos: Todo[];
@@ -16,14 +15,14 @@ const TodoList: React.FC<TodoListProps> = ({
 }) => {
   return (
     <>
-      <div className={styles['todo-list-wrapper']}>
-        <table className={`${styles['todo-table']} ${styles['rounded-table']}`}>
-          <thead>
+      <div className='flex justify-center'>
+        <table className='w-full'>
+          <thead className='bg-gray-200 text-left'>
             <tr>
-              <th>Title</th>
-              <th>Description</th>
-              <th>Status</th>
-              <th>Actions</th>
+              <th className='px-4 py-2'>Title</th>
+              <th className='px-4 py-2'>Description</th>
+              <th className='px-4 py-2'>Status</th>
+              <th className='px-4 py-2'></th>
             </tr>
           </thead>
           <tbody>

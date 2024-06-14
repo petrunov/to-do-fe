@@ -7,22 +7,7 @@ module.exports = {
     './src/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    extend: {
-      colors: {
-        gray: {
-          100: '#f7fafc',
-          200: '#edf2f7',
-          400: '#cbd5e0',
-        },
-        red: {
-          500: '#f56565',
-          700: '#e53e3e',
-        },
-      },
-      borderRadius: {
-        xl: '1.5rem',
-      },
-    },
+    extend: {},
   },
   plugins: [],
 };

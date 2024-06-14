@@ -1,9 +1,6 @@
-// TodoItem.tsx
-
 import React from 'react';
 import { Todo } from 'interfaces/ITodo';
 import { updateTodo } from 'services/todoService';
-import styles from './TodoItem.module.css';
 
 interface TodoItemProps {
   todo: Todo;
@@ -27,34 +24,25 @@ const TodoItem: React.FC<TodoItemProps> = ({
     }
   };
 
-  const handleRowClick = (
-    e: React.MouseEvent<HTMLTableRowElement, MouseEvent>,
-  ) => {
-    const target = e.target as HTMLButtonElement;
-
-    // Check if the click target is the delete button
-    if (
-      target.tagName.toLowerCase() === 'button' &&
-      target.textContent === 'Delete'
-    ) {
-      return; // Do nothing if the click is on the delete button
-    }
-
-    handleToggleComplete(); // Call toggle complete function on row click
-  };
-
   return (
     <tr
-      className={`${styles['todo-item']} ${todo.isCompleted ? styles.completed : ''}`}
+      className={`cursor-pointer transition-all duration-300 ease-in-out hover:bg-green-100 ${
+        todo.isCompleted ? 'line-through' : ''
+      }`}
       onClick={handleToggleComplete}
     >
-      <td>{todo.title}</td>
-      <td>{todo.description}</td>
-      <td className={todo.isCompleted ? styles.completed : styles.incomplete}>
+      <td className='px-5 py-5'>{todo.title}</td>
+      <td className='px-5 py-5'>{todo.description}</td>
+      <td className='px-5 py-5'>
         {todo.isCompleted ? 'Completed' : 'Incomplete'}
       </td>
       <td>
-        <button onClick={onDeleteTodo}>Delete</button>
+        <button
+          className={`bg-red-300 hover:bg-red-600`}
+          onClick={onDeleteTodo}
+        >
+          Delete
+        </button>
       </td>
     </tr>
   );
