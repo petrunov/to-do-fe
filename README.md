@@ -1,4 +1,4 @@
-# Simplet ToDo
+# Simplet ToDo Front-End Client
 
 This is a Simple ToDo app based on NEXbase Core (NEXbase is made by Vesselin Petrunov out of the scope of Simple ToDo).
 
