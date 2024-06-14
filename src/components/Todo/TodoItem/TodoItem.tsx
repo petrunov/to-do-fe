@@ -1,9 +1,9 @@
 // TodoItem.tsx
 
 import React from 'react';
-import styles from './TodoItem.module.css';
 import { Todo } from 'interfaces/ITodo';
 import { updateTodo } from 'services/todoService';
+import styles from './TodoItem.module.css';
 
 interface TodoItemProps {
   todo: Todo;
@@ -46,7 +46,7 @@ const TodoItem: React.FC<TodoItemProps> = ({
   return (
     <tr
       className={`${styles['todo-item']} ${todo.isCompleted ? styles.completed : ''}`}
-      onClick={handleRowClick}
+      onClick={handleToggleComplete}
     >
       <td>{todo.title}</td>
       <td>{todo.description}</td>

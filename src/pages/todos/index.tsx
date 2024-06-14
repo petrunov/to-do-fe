@@ -70,15 +70,6 @@ const TodosPage: React.FC = () => {
     <div>
       <h1>Todos</h1>
       <TodoForm onTodoCreated={handleTodoCreated} />
-      <table>
-        <tbody>
-          <TodoList
-            todos={todos}
-            onUpdateTodo={handleUpdateTodo}
-            onDeleteTodo={handleConfirmDelete}
-          />
-        </tbody>
-      </table>
       <ConfirmDeleteModal
         isOpen={showModal}
         message={
@@ -88,6 +79,11 @@ const TodosPage: React.FC = () => {
         }
         onCancel={handleCancelDelete}
         onConfirm={handleDeleteTodo}
+      />
+      <TodoList
+        todos={todos}
+        onUpdateTodo={handleUpdateTodo}
+        onDeleteTodo={handleConfirmDelete}
       />
     </div>
   );
