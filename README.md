@@ -1,6 +1,7 @@
 # Simplet ToDo Front-End Client
 
-This is a Simple ToDo app based on NEXbase Core (NEXbase is made by Vesselin Petrunov out of the scope of Simple ToDo).
+This is a demo application of a Simple ToDo app based on NEXbase Core to showcase base web development knowledge with containerization and NextJs.
+NEXbase Core is made by Vesselin Petrunov out of the scope of Simple ToDo.
 
 # Installation
 
