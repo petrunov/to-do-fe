@@ -8,18 +8,12 @@ const TodoForm: React.FC<{ onTodoCreated: (newTodo: Todo) => void }> = ({
   const [newTodoTitle, setNewTodoTitle] = useState<string>('');
   const [newTodoDescription, setNewTodoDescription] = useState<string>('');
   const [error, setError] = useState<string | null>(null);
-  const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(true);
 
-  useEffect(() => {
-    // Enable the button if both fields are filled
-    if (newTodoTitle && newTodoDescription) {
-      setIsButtonDisabled(false);
-    } else {
-      setIsButtonDisabled(true);
-    }
-  }, [newTodoTitle, newTodoDescription]);
+  const isButtonDisabled = !newTodoTitle || !newTodoDescription || !!error;
 
   const handleCreateTodo = async () => {
+    if (isButtonDisabled) return;
+
     setError(null); // Clear previous errors
 
     // Front-end validation
@@ -79,8 +73,8 @@ const TodoForm: React.FC<{ onTodoCreated: (newTodo: Todo) => void }> = ({
         <div className='flex justify-end'>
           <button
             onClick={handleCreateTodo}
-            disabled={isButtonDisabled || !!error}
-            className={`bg-green-500 text-white rounded p-2 transition-colors duration-300 ease-in-out hover:bg-green-600 ${isButtonDisabled || !!error ? 'bg-gray-300 hover:bg-gray-300 cursor-not-allowed' : ''}`}
+            disabled={isButtonDisabled}
+            className={` text-white rounded p-2 transition-colors duration-300 ease-in-out ${isButtonDisabled ? 'bg-gray-300 hover:bg-gray-300 cursor-not-allowed' : ''}`}
           >
             Create Todo
           </button>

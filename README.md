@@ -8,15 +8,15 @@ NEXbase Core is made by Vesselin Petrunov out of the scope of Simple ToDo.
 Accessible at http://localhost:3002/todos
 
 ```bash
-$ docker build -t simple-todo .
-$ docker run -p 3002:3000 -d --name simple-todo simple-todo
+docker build -t simple-todo .
+docker run -p 3002:3000 -d --name simple-todo simple-todo
 ```
 
 OR Accessible (normally) at http://localhost:3000/todos
 
 ```bash
-$ yarn
-$ yarn dev
+yarn
+yarn dev
 ```
 
 ## What does it give you?
