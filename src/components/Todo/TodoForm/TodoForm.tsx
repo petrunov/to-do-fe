@@ -1,3 +1,4 @@
+'use client';
 import React, { useState, useEffect, useCallback } from 'react';
 import { createTodo } from 'services/todoService'; // Import createTodo function
 import { Todo } from 'interfaces/ITodo';

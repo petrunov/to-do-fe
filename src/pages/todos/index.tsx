@@ -8,19 +8,24 @@ import { Todo } from 'interfaces/ITodo';
 import TodoList from 'components/Todo/TodoList/TodoList';
 import TodoForm from 'components/Todo/TodoForm/TodoForm';
 import ConfirmDeleteModal from 'components/ConfirmDeleteModal/ConfirmDeleteModal';
+import ClipLoader from 'react-spinners/ClipLoader'; // Import the spinner component
 
 const TodosPage: React.FC = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
+  const [loading, setLoading] = useState<boolean>(false); // Loading state
   const [showModal, setShowModal] = useState(false);
   const [selectedTodo, setSelectedTodo] = useState<Todo | null>(null);
 
   useEffect(() => {
     const getTodos = async () => {
+      setLoading(true); // Set loading to true before request
       try {
         const todosData = await fetchTodos();
         setTodos(todosData);
       } catch (error) {
         console.error('Error fetching todos:', error);
+      } finally {
+        setLoading(false); // Set loading to false after request
       }
     };
 
@@ -37,6 +42,7 @@ const TodosPage: React.FC = () => {
   const handleDeleteTodo = async () => {
     if (!selectedTodo) return;
 
+    setLoading(true); // Set loading to true before request
     try {
       await deleteTodo(selectedTodo.id);
       setTodos(todos.filter((todo) => todo.id !== selectedTodo.id));
@@ -44,6 +50,7 @@ const TodosPage: React.FC = () => {
     } catch (error) {
       console.error('Error deleting todo:', error);
     } finally {
+      setLoading(false); // Set loading to false after request
       setSelectedTodo(null);
     }
   };
@@ -59,10 +66,13 @@ const TodosPage: React.FC = () => {
   };
 
   const handleTodoCreated = async (newTodo: Todo) => {
+    setLoading(true); // Set loading to true before request
     try {
       setTodos([...todos, newTodo]);
     } catch (error) {
       console.error('Error creating todo:', error);
+    } finally {
+      setLoading(false); // Set loading to false after request
     }
   };
 
@@ -79,11 +89,17 @@ const TodosPage: React.FC = () => {
         onCancel={handleCancelDelete}
         onConfirm={handleDeleteTodo}
       />
-      <TodoList
-        todos={todos}
-        onUpdateTodo={handleUpdateTodo}
-        onDeleteTodo={handleConfirmDelete}
-      />
+      {loading ? (
+        <div className='flex justify-center items-center h-screen'>
+          <ClipLoader color={'#123abc'} loading={loading} size={50} />
+        </div>
+      ) : (
+        <TodoList
+          todos={todos}
+          onUpdateTodo={handleUpdateTodo}
+          onDeleteTodo={handleConfirmDelete}
+        />
+      )}
     </div>
   );
 };
