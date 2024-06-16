@@ -5,7 +5,10 @@ import { updateTodo } from 'services/todoService';
 interface TodoItemProps {
   todo: Todo;
   onUpdateTodo: (id: string, todoData: Partial<Todo>) => void;
-  onDeleteTodo: () => void;
+  onDeleteTodo: (
+    todo: Todo,
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ) => void;
 }
 
 const TodoItem: React.FC<TodoItemProps> = ({

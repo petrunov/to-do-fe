@@ -60,7 +60,11 @@ const TodosPage: React.FC = () => {
     setSelectedTodo(null);
   };
 
-  const handleConfirmDelete = (todo: Todo) => {
+  const handleDeleteClick = (
+    todo: Todo,
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ) => {
+    e.stopPropagation();
     setSelectedTodo(todo);
     setShowModal(true);
   };
@@ -97,7 +101,7 @@ const TodosPage: React.FC = () => {
         <TodoList
           todos={todos}
           onUpdateTodo={handleUpdateTodo}
-          onDeleteTodo={handleConfirmDelete}
+          onDeleteTodo={handleDeleteClick}
         />
       )}
     </div>

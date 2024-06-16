@@ -5,7 +5,10 @@ import { Todo } from 'interfaces/ITodo';
 interface TodoListProps {
   todos: Todo[];
   onUpdateTodo: (id: string, todoData: Partial<Todo>) => void;
-  onDeleteTodo: (todo: Todo) => void;
+  onDeleteTodo: (
+    todo: Todo,
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ) => void;
 }
 
 const TodoList: React.FC<TodoListProps> = ({
@@ -31,7 +34,7 @@ const TodoList: React.FC<TodoListProps> = ({
                 key={todo.id}
                 todo={todo}
                 onUpdateTodo={onUpdateTodo}
-                onDeleteTodo={() => onDeleteTodo(todo)}
+                onDeleteTodo={(e) => onDeleteTodo(todo, e)}
               />
             ))}
           </tbody>
