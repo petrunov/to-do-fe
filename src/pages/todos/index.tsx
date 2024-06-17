@@ -86,7 +86,7 @@ const TodosPage: React.FC = () => {
   };
 
   return (
-    <div>
+    <>
       <TodoForm onTodoCreated={handleTodoCreated} />
       <ConfirmDeleteModal
         isOpen={showModal}
@@ -113,7 +113,7 @@ const TodosPage: React.FC = () => {
           onDeleteTodo={handleDeleteClick}
         />
       )}
-    </div>
+    </>
   );
 };
 

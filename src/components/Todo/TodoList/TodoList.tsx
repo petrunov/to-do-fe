@@ -34,7 +34,7 @@ const TodoList: React.FC<TodoListProps> = ({
                 key={todo.id}
                 todo={todo}
                 onUpdateTodo={onUpdateTodo}
-                onDeleteTodo={(e) => onDeleteTodo(todo, e)}
+                onDeleteTodo={onDeleteTodo}
               />
             ))}
           </tbody>

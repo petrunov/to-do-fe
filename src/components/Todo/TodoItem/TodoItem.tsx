@@ -42,7 +42,7 @@ const TodoItem: React.FC<TodoItemProps> = ({
       <td>
         <button
           className={`bg-red-400 hover:bg-red-600`}
-          onClick={onDeleteTodo}
+          onClick={(e) => onDeleteTodo(todo, e)}
         >
           Delete
         </button>
