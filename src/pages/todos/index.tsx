@@ -25,7 +25,7 @@ const TodosPage: React.FC = () => {
         setTodos(todosData);
         setError(null);
       } catch (error) {
-        console.error('Error fetching todos:', error);
+        console.error('Error fetching todos, please retry', error);
         setError('Failed to load todos. Please try again later.');
       } finally {
         setLoading(false); // Set loading to false after request
